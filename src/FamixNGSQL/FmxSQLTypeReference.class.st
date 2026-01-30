@@ -1,25 +1,38 @@
 "
 I am reference to a type of the model.
+
+## Relations
+======================
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `type` | `FmxSQLTypeReference` | `references` | `FmxSQLType` | |
+
+
+
 "
 Class {
-	#name : #FmxSQLTypeReference,
-	#superclass : #FmxSQLReference,
+	#name : 'FmxSQLTypeReference',
+	#superclass : 'FmxSQLReference',
 	#instVars : [
 		'#type => FMOne type: #FmxSQLType opposite: #references'
 	],
-	#category : 'FamixNGSQL-Entities'
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLTypeReference class >> annotation [
 
-	<MSEClass: #TypeReference super: #FmxSQLReference>
+	<FMClass: #TypeReference super: #FmxSQLReference>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTypeReference >> type [
 	"Relation named: #type type: #FmxSQLType opposite: #references"
 
@@ -28,10 +41,9 @@ FmxSQLTypeReference >> type [
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTypeReference >> type: anObject [
 
 	<generated>
 	type := anObject
-
 ]

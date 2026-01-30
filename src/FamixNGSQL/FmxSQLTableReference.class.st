@@ -1,28 +1,44 @@
 "
 I am a reference to a table.
+
+## Relations
+======================
+
+### Association source
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `source` | `FmxSQLTableReference` | `outgoingTableReferences` | `FmxSQLTWithTableReference` | |
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `table` | `FmxSQLTableReference` | `references` | `FmxSQLTable` | |
+
+
+
 "
 Class {
-	#name : #FmxSQLTableReference,
-	#superclass : #FmxSQLReference,
-	#traits : 'FmxSQLTWithQualifiedReference',
-	#classTraits : 'FmxSQLTWithQualifiedReference classTrait',
+	#name : 'FmxSQLTableReference',
+	#superclass : 'FmxSQLReference',
 	#instVars : [
 		'#source => FMOne type: #FmxSQLTWithTableReference opposite: #outgoingTableReferences',
 		'#table => FMOne type: #FmxSQLTable opposite: #references'
 	],
-	#category : #'FamixNGSQL-Entities'
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLTableReference class >> annotation [
 
-	<MSEClass: #TableReference super: #FmxSQLReference>
+	<FMClass: #TableReference super: #FmxSQLReference>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTableReference >> source [
 	"Relation named: #source type: #FmxSQLTWithTableReference opposite: #outgoingTableReferences"
 
@@ -31,15 +47,14 @@ FmxSQLTableReference >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTableReference >> source: anObject [
 
 	<generated>
 	source := anObject
-
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTableReference >> table [
 	"Relation named: #table type: #FmxSQLTable opposite: #references"
 
@@ -48,10 +63,9 @@ FmxSQLTableReference >> table [
 	^ table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTableReference >> table: anObject [
 
 	<generated>
 	table := anObject
-
 ]

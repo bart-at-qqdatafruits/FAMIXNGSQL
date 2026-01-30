@@ -1,16 +1,42 @@
+"
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `name` | `String` | nil | Basic name of the entity, not full reference.|
+
+"
 Class {
-	#name : #FmxSQLNamedEntity,
-	#superclass : #FmxSQLSourcedEntity,
-	#traits : 'FamixTNamed + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTNamed classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
-	#category : 'FamixNGSQL-Entities'
+	#name : 'FmxSQLNamedEntity',
+	#superclass : 'FmxSQLEntity',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLNamedEntity class >> annotation [
 
-	<MSEClass: #NamedEntity super: #FmxSQLSourcedEntity>
+	<FMClass: #NamedEntity super: #FmxSQLEntity>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : 'testing' }
+FmxSQLNamedEntity class >> isAbstract [
+
+	<generated>
+	^ self == FmxSQLNamedEntity
+]
+
+{ #category : 'testing' }
+FmxSQLNamedEntity >> isNamedEntity [
+
+	<generated>
+	^ true
 ]

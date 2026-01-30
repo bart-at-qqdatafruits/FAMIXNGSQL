@@ -1,21 +1,35 @@
+"
+## Relations
+======================
+
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnsContainer` | `FmxSQLTColumn` | `columns` | `FmxSQLColumnsContainer` | |
+
+
+
+"
 Trait {
-	#name : #FmxSQLTColumn,
+	#name : 'FmxSQLTColumn',
 	#instVars : [
 		'#columnsContainer => FMOne type: #FmxSQLColumnsContainer opposite: #columns'
 	],
-	#category : 'FamixNGSQL-Traits'
+	#category : 'FamixNGSQL-Traits',
+	#package : 'FamixNGSQL',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLTColumn classSide >> annotation [
 
-	<MSEClass: #TColumn super: #Trait>
+	<FMClass: #TColumn super: #Object>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTColumn >> columnsContainer [
 	"Relation named: #columnsContainer type: #FmxSQLColumnsContainer opposite: #columns"
 
@@ -24,17 +38,16 @@ FmxSQLTColumn >> columnsContainer [
 	^ columnsContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTColumn >> columnsContainer: anObject [
 
 	<generated>
 	columnsContainer := anObject
-
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FmxSQLTColumn >> columnsContainerGroup [
 	<generated>
 	<navigation: 'ColumnsContainer'>
-	^ MooseGroup with: self columnsContainer
+	^ MooseSpecializedGroup with: self columnsContainer
 ]

@@ -1,32 +1,52 @@
+"
+## Relations
+======================
+
+### Other
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `outgoingNamespaceReference` | `FmxSQLTWithNamespaceReference` | `source` | `FmxSQLNamespaceReference` | |
+
+
+
+"
 Trait {
-	#name : #FmxSQLTWithNamespaceReference,
+	#name : 'FmxSQLTWithNamespaceReference',
 	#instVars : [
 		'#outgoingNamespaceReference => FMMany type: #FmxSQLNamespaceReference opposite: #source'
 	],
-	#category : #'FamixNGSQL-Traits'
+	#category : 'FamixNGSQL-Traits',
+	#package : 'FamixNGSQL',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLTWithNamespaceReference classSide >> annotation [
 
-	<MSEClass: #TWithNamespaceReference super: #Trait>
+	<FMClass: #TWithNamespaceReference super: #Object>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'adding' }
+FmxSQLTWithNamespaceReference >> addOutgoingNamespaceReference: anObject [
+	<generated>
+	^ self outgoingNamespaceReference add: anObject
+]
+
+{ #category : 'accessing' }
 FmxSQLTWithNamespaceReference >> outgoingNamespaceReference [
 	"Relation named: #outgoingNamespaceReference type: #FmxSQLNamespaceReference opposite: #source"
 
 	<generated>
+	<derived>
 	^ outgoingNamespaceReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLTWithNamespaceReference >> outgoingNamespaceReference: anObject [
 
 	<generated>
 	outgoingNamespaceReference value: anObject
-
 ]

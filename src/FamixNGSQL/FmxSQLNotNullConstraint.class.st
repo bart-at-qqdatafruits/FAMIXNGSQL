@@ -1,34 +1,28 @@
 "
 I represent a NOT NULL constraint as defined in SQL standard.
+
+
 "
 Class {
-	#name : #FmxSQLNotNullConstraint,
-	#superclass : #FmxSQLConstraint,
-	#category : 'FamixNGSQL-Entities'
+	#name : 'FmxSQLNotNullConstraint',
+	#superclass : 'FmxSQLConstraint',
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLNotNullConstraint class >> annotation [
 
-	<MSEClass: #NotNullConstraint super: #FmxSQLConstraint>
+	<FMClass: #NotNullConstraint super: #FmxSQLConstraint>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FmxSQLNotNullConstraint >> isNotNullConstraint [
 
 	<generated>
 	^ true
-]
-
-{ #category : #printing }
-FmxSQLNotNullConstraint >> mooseNameOn: aStream [
-	aStream << 'NOT NULL ('.
-	(self outgoingColumnReferences collect: #column) do: [ :c |
-		aStream << c name ] separatedBy: [ aStream << ', ' ].
-	aStream
-		<< ') #';
-		<< self mooseID.
 ]

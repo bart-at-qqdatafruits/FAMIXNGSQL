@@ -1,55 +1,53 @@
 "
 I am reference to a column in a table of the model.
+
+## Relations
+======================
+
+### Association source
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `foreignKeyConstraintSource` | `FmxSQLColumnReference` | `outgoingForeignKeyColumnReferences` | `FmxSQLForeignKeyConstraint` | |
+| `source` | `FmxSQLColumnReference` | `outgoingColumnReferences` | `FmxSQLTWithColumnReference` | |
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `column` | `FmxSQLColumnReference` | `references` | `FmxSQLColumn` | |
+
+
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `isWildCardReference` | `Boolean` | nil | |
+
 "
 Class {
-	#name : #FmxSQLColumnReference,
-	#superclass : #FmxSQLReference,
-	#traits : 'FmxSQLTWithQualifiedReference',
-	#classTraits : 'FmxSQLTWithQualifiedReference classTrait',
+	#name : 'FmxSQLColumnReference',
+	#superclass : 'FmxSQLReference',
 	#instVars : [
-		'#column => FMOne type: #FmxSQLColumn opposite: #references',
-		'#foreignKeyConstraintSource => FMOne type: #FmxSQLForeignKeyConstraint opposite: #outgoingForeignKeyColumnReferences',
-		'#isCertain => FMProperty',
 		'#isWildCardReference => FMProperty',
+		'#foreignKeyConstraintSource => FMOne type: #FmxSQLForeignKeyConstraint opposite: #outgoingForeignKeyColumnReferences',
 		'#source => FMOne type: #FmxSQLTWithColumnReference opposite: #outgoingColumnReferences',
-		'#triggerStoredProceduresReferencing => FMOne type: #FmxSQLTriggerStoredProcedure opposite: #columnsReferenced'
+		'#column => FMOne type: #FmxSQLColumn opposite: #references'
 	],
-	#category : #'FamixNGSQL-Entities'
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLColumnReference class >> annotation [
 
-	<MSEClass: #ColumnReference super: #FmxSQLReference>
+	<FMClass: #ColumnReference super: #FmxSQLReference>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #meta }
-FmxSQLColumnReference class >> requirements [
-
-	<generated>
-	^ { FmxSQLTriggerStoredProcedure }
-]
-
-{ #category : #accessing }
-FmxSQLColumnReference >> belongsTo [
-
-	<generated>
-	^ self triggerStoredProceduresReferencing
-
-]
-
-{ #category : #accessing }
-FmxSQLColumnReference >> belongsTo: anObject [
-
-	<generated>
-	self triggerStoredProceduresReferencing: anObject
-
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> column [
 	"Relation named: #column type: #FmxSQLColumn opposite: #references"
 
@@ -58,15 +56,14 @@ FmxSQLColumnReference >> column [
 	^ column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> column: anObject [
 
 	<generated>
 	column := anObject
-
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> foreignKeyConstraintSource [
 	"Relation named: #foreignKeyConstraintSource type: #FmxSQLForeignKeyConstraint opposite: #outgoingForeignKeyColumnReferences"
 
@@ -75,54 +72,35 @@ FmxSQLColumnReference >> foreignKeyConstraintSource [
 	^ foreignKeyConstraintSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> foreignKeyConstraintSource: anObject [
 
 	<generated>
 	foreignKeyConstraintSource := anObject
-
 ]
 
-{ #category : #accessing }
-FmxSQLColumnReference >> isCertain [
-
-	<MSEProperty: #isCertain type: #Boolean>
-	<generated>
-	^ isCertain
-]
-
-{ #category : #accessing }
-FmxSQLColumnReference >> isCertain: anObject [
-
-	<generated>
-	isCertain := anObject
-
-]
-
-{ #category : #testing }
+{ #category : 'testing' }
 FmxSQLColumnReference >> isColumnReference [
 
 	<generated>
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> isWildCardReference [
 
-	<MSEProperty: #isWildCardReference type: #Boolean>
+	<FMProperty: #isWildCardReference type: #Boolean>
 	<generated>
 	^ isWildCardReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> isWildCardReference: anObject [
-
 	<generated>
 	isWildCardReference := anObject
-
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> source [
 	"Relation named: #source type: #FmxSQLTWithColumnReference opposite: #outgoingColumnReferences"
 
@@ -131,34 +109,9 @@ FmxSQLColumnReference >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumnReference >> source: anObject [
 
 	<generated>
 	source := anObject
-
-]
-
-{ #category : #accessing }
-FmxSQLColumnReference >> triggerStoredProceduresReferencing [
-	"Relation named: #triggerStoredProceduresReferencing type: #FmxSQLTriggerStoredProcedure opposite: #columnsReferenced"
-
-	<generated>
-	<container>
-	^ triggerStoredProceduresReferencing
-]
-
-{ #category : #accessing }
-FmxSQLColumnReference >> triggerStoredProceduresReferencing: anObject [
-
-	<generated>
-	triggerStoredProceduresReferencing := anObject
-
-]
-
-{ #category : #navigation }
-FmxSQLColumnReference >> triggerStoredProceduresReferencingGroup [
-	<generated>
-	<navigation: 'TriggerStoredProceduresReferencing'>
-	^ MooseGroup with: self triggerStoredProceduresReferencing
 ]

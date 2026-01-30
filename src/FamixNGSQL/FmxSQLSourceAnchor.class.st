@@ -1,16 +1,38 @@
+"
+## Relations
+======================
+
+### Other
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `element` | `FamixTSourceAnchor` | `sourceAnchor` | `FamixTSourceEntity` | Enable the accessibility to the famix entity that this class is a source pointer for|
+
+
+
+"
 Class {
-	#name : #FmxSQLSourceAnchor,
-	#superclass : #FmxSQLEntity,
+	#name : 'FmxSQLSourceAnchor',
+	#superclass : 'FmxSQLEntity',
 	#traits : 'FamixTSourceAnchor',
 	#classTraits : 'FamixTSourceAnchor classTrait',
-	#category : #'FamixNGSQL-Entities'
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLSourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FmxSQLEntity>
+	<FMClass: #SourceAnchor super: #FmxSQLEntity>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : 'testing' }
+FmxSQLSourceAnchor class >> isAbstract [
+
+	<generated>
+	^ self == FmxSQLSourceAnchor
 ]

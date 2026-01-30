@@ -1,102 +1,80 @@
 "
 I represent a Column in the relational model.
+
+## Relations
+======================
+
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnsContainer` | `FmxSQLTColumn` | `columns` | `FmxSQLColumnsContainer` | |
+
+### Incoming dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `references` | `FmxSQLColumn` | `column` | `FmxSQLColumnReference` | |
+
+### Other
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `type` | `FmxSQLColumn` | `columns` | `FmxSQLType` | |
+
+
+
 "
 Class {
-	#name : #FmxSQLColumn,
-	#superclass : #FmxSQLStructuralEntity,
+	#name : 'FmxSQLColumn',
+	#superclass : 'FmxSQLStructuralEntity',
 	#traits : 'FmxSQLTColumn',
 	#classTraits : 'FmxSQLTColumn classTrait',
 	#instVars : [
 		'#type => FMOne type: #FmxSQLType opposite: #columns',
 		'#references => FMMany type: #FmxSQLColumnReference opposite: #column'
 	],
-	#category : #'FamixNGSQL-Entities'
+	#category : 'FamixNGSQL-Entities',
+	#package : 'FamixNGSQL',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FmxSQLColumn class >> annotation [
 
-	<MSEClass: #Column super: #FmxSQLStructuralEntity>
+	<FMClass: #Column super: #FmxSQLStructuralEntity>
 	<package: #FamixNGSQL>
 	<generated>
-	^self
+	^ self
 ]
 
-{ #category : #meta }
-FmxSQLColumn class >> requirements [
-
+{ #category : 'adding' }
+FmxSQLColumn >> addReference: anObject [
 	<generated>
-	^ { FmxSQLDerivedTable. FmxSQLNewLocalVariable. FmxSQLOldLocalVariable. FmxSQLRecordLocalVariable. FmxSQLTable. FmxSQLView }
+	^ self references add: anObject
 ]
 
-{ #category : #accessing }
-FmxSQLColumn >> belongsTo [
-
-	<generated>
-	^ self columnsContainer
-
-]
-
-{ #category : #accessing }
-FmxSQLColumn >> belongsTo: anObject [
-
-	<generated>
-	self columnsContainer: anObject
-
-]
-
-{ #category : #accessing }
-FmxSQLColumn >> foreignKeyConstraintsReferencing [
-	^ (self queryIncoming: FmxSQLColumnReference) select: [ :ref | ref from class = FmxSQLForeignKeyConstraint and: [ ref from referencedColumns includes: self ] ]
-]
-
-{ #category : #testing }
-FmxSQLColumn >> hasPrimaryKey [
-	"Returns true if a Primary Key constraint is applied on the column.
-	 Note that the column might not be the only one concerned by the the PK.
-	"
-	^ (self queryIncoming: FmxSQLColumnReference) anySatisfy: [ :ref | ref from class = FmxSQLPrimaryKeyConstraint ]
-]
-
-{ #category : #testing }
-FmxSQLColumn >> hasUniqueConstraint [
-	"Returns true if a Unique constraint is applied on the column.
-	 Note that the column might not be the only one concerned by the the PK.
-	"
-	^ (self queryIncoming: FmxSQLColumnReference) anySatisfy: [ :ref | ref from class = FmxSQLUniqueConstraint ]
-]
-
-{ #category : #testing }
+{ #category : 'testing' }
 FmxSQLColumn >> isColumn [
 
 	<generated>
 	^ true
 ]
 
-{ #category : #accessing }
-FmxSQLColumn >> primaryKey [
-	^ (self queryIncoming: FmxSQLColumnReference)
-		detect: [ :ref | ref from class = FmxSQLPrimaryKeyConstraint ]
-		ifNone: [ self error: 'No primary key applied on this column.' ]
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumn >> references [
 	"Relation named: #references type: #FmxSQLColumnReference opposite: #column"
 
 	<generated>
+	<derived>
 	^ references
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumn >> references: anObject [
 
 	<generated>
 	references value: anObject
-
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumn >> type [
 	"Relation named: #type type: #FmxSQLType opposite: #columns"
 
@@ -104,10 +82,9 @@ FmxSQLColumn >> type [
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLColumn >> type: anObject [
 
 	<generated>
 	type := anObject
-
 ]

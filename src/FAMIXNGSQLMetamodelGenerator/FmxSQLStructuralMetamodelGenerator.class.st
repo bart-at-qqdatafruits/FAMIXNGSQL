@@ -1,6 +1,6 @@
 Class {
-	#name : #FmxSQLStructuralMetamodelGenerator,
-	#superclass : #FamixBasicInfrastructureGenerator,
+	#name : 'FmxSQLStructuralMetamodelGenerator',
+	#superclass : 'FamixBasicInfrastructureGenerator',
 	#instVars : [
 		'uniqueConstraint',
 		'constraint',
@@ -26,41 +26,64 @@ Class {
 		'namespaceReference',
 		'tWithNamespaceReference'
 	],
-	#category : #FAMIXNGSQLMetamodelGenerator
+	#category : 'FAMIXNGSQLMetamodelGenerator',
+	#package : 'FAMIXNGSQLMetamodelGenerator'
 }
 
-{ #category : #'comments - SQL' }
+{ #category : 'generation' }
+FmxSQLStructuralMetamodelGenerator class >> generate [
+	"This method is just there to make regeneration of the MM easy."
+	<script>
+	"
+	[ super generate ] on: Warning do: [ :warning |
+		warning logCr.
+		warning resume ]
+	"
+	super generate.
+]
+
+{ #category : 'accessing' }
+FmxSQLStructuralMetamodelGenerator class >> packageName [
+	^ 'FamixNGSQL'
+]
+
+{ #category : 'accessing' }
+FmxSQLStructuralMetamodelGenerator class >> prefix [
+	^ 'FmxSQL'
+]
+
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> checkConstraintComment [
 	^ 'I represent a CHECK constraint as defined in SQL standard.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> columnComment [
 	^ 'I represent a Column in the relational model.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> columnReferenceComment [
 	^ 'I am reference to a column in a table of the model.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> columnsContainerComment [
 	^ 'I am an abstract super class for entities that contain columns. Two of my well-known subclasses are the table and the view.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> constraintComment [
 	^ 'I am an abstract superclass for constraints. A constraint restrict the possible values that can be stored in a column of a table.'
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLStructuralMetamodelGenerator >> defineClasses [
 	super defineClasses.
 	self defineStructuralEntities.
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLStructuralMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
 	self
@@ -68,13 +91,13 @@ FmxSQLStructuralMetamodelGenerator >> defineHierarchy [
 		defineStructuralReferencesHierarchy.
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLStructuralMetamodelGenerator >> defineProperties [
 	super defineProperties.
 	self defineStructuralReferenceProperties
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLStructuralMetamodelGenerator >> defineRelations [
 	super defineRelations.
 	self
@@ -83,7 +106,7 @@ FmxSQLStructuralMetamodelGenerator >> defineRelations [
 		defineStructuralReferenceEntities.
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralEntities [
 	structuralEntity := builder
 		newClassNamed: #StructuralEntity
@@ -139,7 +162,7 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralEntities [
 		comment: self namespaceReferenceComment.
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralEntitiesRelations [
 	"A column references a type."
 	(column property: #type) *- (type property: #columns).
@@ -158,7 +181,7 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralEntitiesRelations [
 		*- (table property: #subTables)
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralHierarchy [
 	"Abstract entities inheritance relations."
 	structuralEntity --|> namedEntity.
@@ -185,9 +208,10 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralHierarchy [
 	foreignKeyConstraint --|> constraint.
 	notNullConstraint --|> constraint.
 	uniqueConstraint --|> constraint.
+	checkConstraint --|> constraint.
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralReferenceEntities [
 	"A type reference references a type."
 	(typeReference property: #type) target
@@ -205,23 +229,23 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralReferenceEntities [
 		*- (namespace property: #references)
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralReferenceProperties [
 	columnReference
 		property: #isWildCardReference type: #Boolean
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralReferencesHierarchy [
-	reference --|> association.
-	reference --|> #TArgument.
+	"reference --|> association."
+	"reference --|> #TArgument."
 	tableReference --|> reference.
 	columnReference --|> reference.
 	typeReference --|> reference.
 	namespaceReference --|> reference
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralTraits [
 	tAbstractType := builder newTraitNamed: #AbstractType.
 	tColumn := builder newTraitNamed: #TColumn.
@@ -237,7 +261,7 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralTraits [
 	tWithNamespaceReference := builder newTraitNamed: #TWithNamespaceReference
 ]
 
-{ #category : #'definition - structural' }
+{ #category : 'definition - structural' }
 FmxSQLStructuralMetamodelGenerator >> defineStructuralTraitsRelations [
 	"A columns container contains columns."
 	(tColumnsContainer property: #columns)
@@ -250,83 +274,83 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralTraitsRelations [
 		-* (namespaceReference property: #source)
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLStructuralMetamodelGenerator >> defineTraits [
 	super defineTraits.
 	self defineStructuralTraits
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> entityInNamespaceComment [
 	^ 'I am a trait that any entity which can be part of a namespace use.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> foreignKeyConstraintComment [
 	^ 'I represent a FOREIGN KEY constraint as defined in SQL standard.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> namespaceComment [
 	^ 'I am a namespace. I hold entities to define a name scope where name duplicates are forbidden.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> namespaceReferenceComment [
 	^ 'I model a reference made to a namespace from source code.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> nullConstraintComment [
 	^ 'I represent a NOT NULL constraint as defined in SQL standard.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> primaryKeyConstraintComment [
 	^ 'I represent a PRIMARY KEY constraint as defined in SQL standard.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> queryContainerComment [
 	^ 'I am an abstract super class for behavioural entities that can contain queries in their source code.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> referenceComment [
 	^ 'I am an abstract object that represent a reference made to another entity in the source code a behavioural entity.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> referenceContainerComment [
 	^ 'I am a trait for entities containing references (storedProcedure, Clause and Alias).'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> structuralEntityComment [
 	^ 'I am an abstract superclass for structural entities. A structural entity is an entity that defines how data are structured by the database.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> tableComment [
 	^ 'I represent a Table in the relational model.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> tableReferenceComment [
 	^ 'I am a reference to a table.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> typeComment [
 	^ 'I represent a Type in the database. I can be used for a column, a local variable, a parameter, etc...'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> typeReferenceComment [
 	^ 'I am reference to a type of the model.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLStructuralMetamodelGenerator >> uniqueConstraintComment [
 	^ 'I represent a UNIQUE constraint as defined in SQL standard.'
 ]

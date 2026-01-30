@@ -1,6 +1,6 @@
 Class {
-	#name : #FmxSQLMetamodelGenerator,
-	#superclass : #FmxSQLStructuralMetamodelGenerator,
+	#name : 'FmxSQLMetamodelGenerator',
+	#superclass : 'FmxSQLStructuralMetamodelGenerator',
 	#instVars : [
 		'crudQuery',
 		'view',
@@ -69,59 +69,63 @@ Class {
 		'qualifiedReference',
 		'tWithQualifiedReference'
 	],
-	#category : #FAMIXNGSQLMetamodelGenerator
+	#category : 'FAMIXNGSQLMetamodelGenerator',
+	#package : 'FAMIXNGSQLMetamodelGenerator'
 }
 
-{ #category : #'meta-model regeneration' }
+{ #category : 'meta-model regeneration' }
 FmxSQLMetamodelGenerator class >> generate [
 	"This method is just there to make regeneration of the MM easy."
 	<script>
+	"
 	[ super generate ] on: Warning do: [ :warning |
 		warning logCr.
 		warning resume ]
+	"
+	super generate.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLMetamodelGenerator class >> packageName [
 	^ 'FamixNGSQL'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FmxSQLMetamodelGenerator class >> prefix [
 	^ 'FmxSQL'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> aliasAccessComment [
 	^ 'I am an access to an alias.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> aliasComment [
 	^ 'I am an Alias'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> clauseComment [
 	^ 'I am an abstract clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> columnAliasComment [
 	^ 'I am an alias for a column.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> columnsContainerAliasComment [
 	^ 'I am an alias for a table. Eventually I also contain alias to columns.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> conflictClauseComment [
 	^ 'I am a on conflict clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> crudQueryComment [
 	^ 'I am an abstract superclass for Create Read Update Delete (CRUD) queries.
 
@@ -136,22 +140,22 @@ The Delete query is the DELETE query in SQL.
 My subclasses represent these four queries.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> cursorComment [
 	^ 'I am a cursor, a local iterator that can have parameters'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> cursorParameterAccessComment [
 	^ 'I am an access to a cursor parameter.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> cursorReferenceComment [
 	^ 'I am a reference to a cursor'
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralEntities [
 	behaviouralEntity := builder newTraitNamed: #BehaviouralEntity.
 	view := builder newClassNamed: #View comment: self viewComment.
@@ -207,7 +211,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralEntities [
 	entitySourceAnchor withTesting
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralEntitiesProperties [
 	trigger
 		property: #firingAction type: #String;
@@ -221,7 +225,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralEntitiesProperties [
 		property: #isCertain type: #Boolean
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralEntitiesRelations [
 	"A CheckConstraint can call StoredProcedures"
 	(checkConstraint property: #storedProceduresCalled)
@@ -293,10 +297,10 @@ FmxSQLMetamodelGenerator >> defineBehaviouralEntitiesRelations [
 		-* (columnAlias property: #columnsContainerAlias).
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralHierarchy [
 	"Abstract entities inheritance relations."
-	behaviouralEntity --|> tWithEntitySourceAnchor.
+	"behaviouralEntity --|> tWithEntitySourceAnchor."
 	crudQuery --|> entity.
 	crudQuery --|> #TWithSourceAnchor.
 	crudQuery --|> #TEntityMetaLevelDependency.
@@ -405,7 +409,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralHierarchy [
 	entitySourceAnchor --|> #TSourceAnchor
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralReferenceRelations [
 	"A view reference references a view."
 	(viewReference property: #view) target
@@ -440,7 +444,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralReferenceRelations [
 		*- (cursor property: #references).
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralReferencesHierarchy [
 	tableReference --|> tWithQualifiedReference.
 	columnReference --|> tWithQualifiedReference.
@@ -479,7 +483,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralReferencesHierarchy [
 	namespaceReference --|> tWithQualifiedReference
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralTraits [
 	tWithDerivedTableReference := builder
 		newTraitNamed: #TWithDerivedTableReference.
@@ -499,7 +503,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralTraits [
 		newTraitNamed: #TWithQualifiedReference
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineBehaviouralTraitsRelations [
 	(tWithDerivedTableReference property: #outgoingDerivedTableReferences)
 		-* (derivedTableReference property: #source) source.
@@ -524,7 +528,7 @@ FmxSQLMetamodelGenerator >> defineBehaviouralTraitsRelations [
 		*- (qualifiedReference property: #references)
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLMetamodelGenerator >> defineClasses [
 	super defineClasses.
 	self
@@ -534,7 +538,7 @@ FmxSQLMetamodelGenerator >> defineClasses [
 		defineReferences
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineClausesEntities [
 	"Clause entities."
 
@@ -612,7 +616,7 @@ FmxSQLMetamodelGenerator >> defineClausesEntities [
 	limitClause withTesting.
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineClausesHierarchy [
 	"Defining all kinds of clauses"
 	clause --|> entity.
@@ -732,7 +736,7 @@ FmxSQLMetamodelGenerator >> defineClausesHierarchy [
 	limitClause --|> clause
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
 	self
@@ -741,13 +745,13 @@ FmxSQLMetamodelGenerator >> defineHierarchy [
 		defineBehaviouralReferencesHierarchy
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLMetamodelGenerator >> defineProperties [
 	super defineProperties.
 	self defineBehaviouralEntitiesProperties
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineQueries [
 	crudQuery := builder
 		newClassNamed: #CRUDQuery
@@ -769,7 +773,7 @@ FmxSQLMetamodelGenerator >> defineQueries [
 		comment: self valuesQueryComment.
 ]
 
-{ #category : #'definition - behavioural' }
+{ #category : 'definition - behavioural' }
 FmxSQLMetamodelGenerator >> defineReferences [
 	viewReference := builder
 		newClassNamed: #ViewReference
@@ -813,7 +817,7 @@ FmxSQLMetamodelGenerator >> defineReferences [
 		comment: self qualifiedReferenceComment
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLMetamodelGenerator >> defineRelations [
 	super defineRelations.
 	self
@@ -822,118 +826,118 @@ FmxSQLMetamodelGenerator >> defineRelations [
 		defineBehaviouralReferenceRelations
 ]
 
-{ #category : #definition }
+{ #category : 'definition' }
 FmxSQLMetamodelGenerator >> defineTraits [
 	super defineTraits.
 	self defineBehaviouralTraits
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> deleteQueryComment [
 	^ 'I am an DELETE query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> derivedTableComment [
 	^ 'I am a derived table. A derived table is a temporary table created to store temporarily the results of a sub-select query in a select query. Such tables are not globally named as a Tableor a View because they can not be accessed outside the query in which they are computed (which is also the query defining them). Nonetheless, they can get an alias to be referenced inside the query. .'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> derivedTableReferenceComment [
 	^ 'I am a reference to a derived table.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> entitySourceAnchorComment [
 	^ 'I am a source anchor which anchor source code held by an entity with immediate source.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> exceptClauseComment [
 	^ 'I am an except clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> foreignTableComment [
 	^ 'I am a foreign table, that is to say, my data source is not inside the database.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> fromClauseComment [
 	^ 'I am a from clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> groupByClauseComment [
 	^ 'I am a group by clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> havingClauseComment [
 	^ 'I am a having clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> insertQueryComment [
 	^ 'I am an INSERT query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> intersectClauseComment [
 	^ 'I am an intersect clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> intoClauseComment [
 	^ 'I am an into clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> joinClauseComment [
 	^ 'I am a join clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> limitClauseComment [
 	^ 'I am a limit clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> localVariableAccessComment [
 	^ 'I am an access to a local variable in a procedure.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> localVariableComment [
 	^ 'I am a local variable of a stored procedure. I have a type.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> newLocalVariableComment [
 	^ 'I model the special NEW local variable accessible from inside trigger stored procedure.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> oldLocalVariableComment [
 	^ 'I model the special OLD local variable accessible from inside trigger stored procedure.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> orderByClauseComment [
 	^ 'I am an order by clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> parameterAccessComment [
 	^ 'I am an access to a stored procedure parameter.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> parameterComment [
 	^ 'I am a parameter of a stored procedure. I have a type.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> qualifiedReferenceComment [
 	^ 'I model a qualified reference.
 
@@ -947,12 +951,12 @@ together grouped in a QualifiedReference.
 One can ask the #qualifiedReference to any reference in the system, it will be set if it has one.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> recordLocalVariableComment [
 	^ 'I am local variable of type record. I can contain columns. These columns are set when a SELECT INTO is encountered.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> referencesGroupComment [
 	^ 'I model a group of refererences to other entities.
 
@@ -964,95 +968,95 @@ SELECT fct1(id)+fct2(id) AS id -- <-- Here a reference group is created containi
 FROM table'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> referencesGroupReferenceComment [
 	self flag: #TODO.
 	^ 'TODO'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> returningClauseComment [
 	^ 'I am a returning clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> selectClauseComment [
 	^ 'I am a select clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> selectQueryComment [
 	^ 'I am a SELECT query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> setClauseComment [
 	^ 'I am a set clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> storedProcedureCallComment [
 	^ 'I am a call to a stored procedure of the model.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> storedProcedureComment [
 	^ 'I am a stored procedure. That is to say, a function that is defined inside the database.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> triggerComment [
 	^ 'I am a trigger. A trigger allows to define actions to performs when a specific event occurs on a table. Because a trigger can not exist without the table to which it listens to events, a trigger is contained in a table.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> triggerStoredProcedureComment [
 	^ 'I am a special stored procedure used to define the actions a trigger perform.
 
 This concept does not exists in all DBMS (for example, in MySQL a trigger has a body directly defined when defining the trigger). Nevertheless, it allows to unify the different approach take by different DBMS. In the meta-model, a trigger is always defined as referencing a trigger stored procedure. For DBMS where it is not implemented like that in reality, the trigger stored procedure as no name because it is virtual.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> unionClauseComment [
 	^ 'I am an union clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> updateQueryComment [
 	^ 'I am an UPDATE query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> usingClauseComment [
 	^ 'I am an using clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> valuesClauseComment [
 	^ 'I am a Values clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> valuesQueryComment [
 	^ 'I am a VALUES query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> viewComment [
 	^ 'I am a view. I can be used transparently as a table but I do not hold data. My data are fetched by the SELECT query which defines myself.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> viewReferenceComment [
 	^ 'I am a reference to a view.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> whereClauseComment [
 	^ 'I am a where clause'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : 'comments - SQL' }
 FmxSQLMetamodelGenerator >> withClauseComment [
 	^ 'I am a with clause'
 ]

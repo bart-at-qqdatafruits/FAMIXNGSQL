@@ -1,1 +1,1 @@
-Package { #name : #FAMIXNGSQLMetamodelGenerator }
+Package { #name : 'FAMIXNGSQLMetamodelGenerator' }

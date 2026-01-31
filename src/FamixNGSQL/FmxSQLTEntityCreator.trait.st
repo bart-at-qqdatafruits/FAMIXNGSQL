@@ -21,38 +21,80 @@ FmxSQLTEntityCreator classSide >> annotation [
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newCheckConstraint [
+FmxSQLTEntityCreator >> newAlias [
 
 	<generated>
-	^ self add: FmxSQLCheckConstraint new
+	^ self add: FmxSQLAlias new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newCheckConstraintNamed: aName [
+FmxSQLTEntityCreator >> newAliasAccess [
 
 	<generated>
-	^ self add: (FmxSQLCheckConstraint named: aName)
+	^ self add: FmxSQLAliasAccess new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newColumn [
+FmxSQLTEntityCreator >> newAliasNamed: aName [
 
 	<generated>
-	^ self add: FmxSQLColumn new
+	^ self add: (FmxSQLAlias named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newColumnNamed: aName [
+FmxSQLTEntityCreator >> newCRUDQuery [
 
 	<generated>
-	^ self add: (FmxSQLColumn named: aName)
+	^ self add: FmxSQLCRUDQuery new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newColumnReference [
+FmxSQLTEntityCreator >> newClause [
 
 	<generated>
-	^ self add: FmxSQLColumnReference new
+	^ self add: FmxSQLClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnAlias [
+
+	<generated>
+	^ self add: FmxSQLColumnAlias new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnAliasAccess [
+
+	<generated>
+	^ self add: FmxSQLColumnAliasAccess new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnAliasNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLColumnAlias named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnsContainerAlias [
+
+	<generated>
+	^ self add: FmxSQLColumnsContainerAlias new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnsContainerAliasAccess [
+
+	<generated>
+	^ self add: FmxSQLColumnsContainerAliasAccess new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newColumnsContainerAliasNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLColumnsContainerAlias named: aName)
 ]
 
 { #category : 'entity creation' }
@@ -63,87 +105,304 @@ FmxSQLTEntityCreator >> newComment [
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newConstraint [
+FmxSQLTEntityCreator >> newCursor [
 
 	<generated>
-	^ self add: FmxSQLConstraint new
+	^ self add: FmxSQLCursor new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newConstraintNamed: aName [
+FmxSQLTEntityCreator >> newCursorNamed: aName [
 
 	<generated>
-	^ self add: (FmxSQLConstraint named: aName)
+	^ self add: (FmxSQLCursor named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newForeignKeyConstraint [
+FmxSQLTEntityCreator >> newCursorParameter [
 
 	<generated>
-	^ self add: FmxSQLForeignKeyConstraint new
+	^ self add: FmxSQLCursorParameter new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newForeignKeyConstraintNamed: aName [
+FmxSQLTEntityCreator >> newCursorParameterAccess [
 
 	<generated>
-	^ self add: (FmxSQLForeignKeyConstraint named: aName)
+	^ self add: FmxSQLCursorParameterAccess new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newNamespace [
+FmxSQLTEntityCreator >> newCursorParameterNamed: aName [
 
 	<generated>
-	^ self add: FmxSQLNamespace new
+	^ self add: (FmxSQLCursorParameter named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newNamespaceNamed: aName [
+FmxSQLTEntityCreator >> newCursorReference [
 
 	<generated>
-	^ self add: (FmxSQLNamespace named: aName)
+	^ self add: FmxSQLCursorReference new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newNamespaceReference [
+FmxSQLTEntityCreator >> newDeleteQuery [
 
 	<generated>
-	^ self add: FmxSQLNamespaceReference new
+	^ self add: FmxSQLDeleteQuery new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newNotNullConstraint [
+FmxSQLTEntityCreator >> newDerivedTable [
 
 	<generated>
-	^ self add: FmxSQLNotNullConstraint new
+	^ self add: FmxSQLDerivedTable new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newNotNullConstraintNamed: aName [
+FmxSQLTEntityCreator >> newDerivedTableNamed: aName [
 
 	<generated>
-	^ self add: (FmxSQLNotNullConstraint named: aName)
+	^ self add: (FmxSQLDerivedTable named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newPrimaryKeyConstraint [
+FmxSQLTEntityCreator >> newDerivedTableReference [
 
 	<generated>
-	^ self add: FmxSQLPrimaryKeyConstraint new
+	^ self add: FmxSQLDerivedTableReference new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newPrimaryKeyConstraintNamed: aName [
+FmxSQLTEntityCreator >> newEntitySourceAnchor [
 
 	<generated>
-	^ self add: (FmxSQLPrimaryKeyConstraint named: aName)
+	^ self add: FmxSQLEntitySourceAnchor new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newReference [
+FmxSQLTEntityCreator >> newExceptClause [
 
 	<generated>
-	^ self add: FmxSQLReference new
+	^ self add: FmxSQLExceptClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newForeignTable [
+
+	<generated>
+	^ self add: FmxSQLForeignTable new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newForeignTableNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLForeignTable named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newFromClause [
+
+	<generated>
+	^ self add: FmxSQLFromClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newGroupByClause [
+
+	<generated>
+	^ self add: FmxSQLGroupByClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newHavingClause [
+
+	<generated>
+	^ self add: FmxSQLHavingClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newInsertQuery [
+
+	<generated>
+	^ self add: FmxSQLInsertQuery new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newIntersectClause [
+
+	<generated>
+	^ self add: FmxSQLIntersectClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newIntoClause [
+
+	<generated>
+	^ self add: FmxSQLIntoClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newJoinClause [
+
+	<generated>
+	^ self add: FmxSQLJoinClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newLimitClause [
+
+	<generated>
+	^ self add: FmxSQLLimitClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newLocalVariable [
+
+	<generated>
+	^ self add: FmxSQLLocalVariable new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newLocalVariableAccess [
+
+	<generated>
+	^ self add: FmxSQLLocalVariableAccess new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newLocalVariableNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLLocalVariable named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newNewLocalVariable [
+
+	<generated>
+	^ self add: FmxSQLNewLocalVariable new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newNewLocalVariableNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLNewLocalVariable named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newOldLocalVariable [
+
+	<generated>
+	^ self add: FmxSQLOldLocalVariable new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newOldLocalVariableNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLOldLocalVariable named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newOnConflictClause [
+
+	<generated>
+	^ self add: FmxSQLOnConflictClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newOrderByClause [
+
+	<generated>
+	^ self add: FmxSQLOrderByClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newParameter [
+
+	<generated>
+	^ self add: FmxSQLParameter new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newParameterAccess [
+
+	<generated>
+	^ self add: FmxSQLParameterAccess new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newParameterNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLParameter named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newQualifiedReference [
+
+	<generated>
+	^ self add: FmxSQLQualifiedReference new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newRecordLocalVariable [
+
+	<generated>
+	^ self add: FmxSQLRecordLocalVariable new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newRecordLocalVariableNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLRecordLocalVariable named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newReferencesGroup [
+
+	<generated>
+	^ self add: FmxSQLReferencesGroup new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newReferencesGroupReference [
+
+	<generated>
+	^ self add: FmxSQLReferencesGroupReference new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newReturningClause [
+
+	<generated>
+	^ self add: FmxSQLReturningClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newSelectClause [
+
+	<generated>
+	^ self add: FmxSQLSelectClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newSelectQuery [
+
+	<generated>
+	^ self add: FmxSQLSelectQuery new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newSetClause [
+
+	<generated>
+	^ self add: FmxSQLSetClause new
 ]
 
 { #category : 'entity creation' }
@@ -161,71 +420,120 @@ FmxSQLTEntityCreator >> newSourceTextAnchor [
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newStructuralEntity [
+FmxSQLTEntityCreator >> newStoredProcedure [
 
 	<generated>
-	^ self add: FmxSQLStructuralEntity new
+	^ self add: FmxSQLStoredProcedure new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newStructuralEntityNamed: aName [
+FmxSQLTEntityCreator >> newStoredProcedureCall [
 
 	<generated>
-	^ self add: (FmxSQLStructuralEntity named: aName)
+	^ self add: FmxSQLStoredProcedureCall new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newTable [
+FmxSQLTEntityCreator >> newStoredProcedureNamed: aName [
 
 	<generated>
-	^ self add: FmxSQLTable new
+	^ self add: (FmxSQLStoredProcedure named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newTableNamed: aName [
+FmxSQLTEntityCreator >> newTrigger [
 
 	<generated>
-	^ self add: (FmxSQLTable named: aName)
+	^ self add: FmxSQLTrigger new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newTableReference [
+FmxSQLTEntityCreator >> newTriggerNamed: aName [
 
 	<generated>
-	^ self add: FmxSQLTableReference new
+	^ self add: (FmxSQLTrigger named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newType [
+FmxSQLTEntityCreator >> newTriggerStoredProcedure [
 
 	<generated>
-	^ self add: FmxSQLType new
+	^ self add: FmxSQLTriggerStoredProcedure new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newTypeNamed: aName [
+FmxSQLTEntityCreator >> newTriggerStoredProcedureNamed: aName [
 
 	<generated>
-	^ self add: (FmxSQLType named: aName)
+	^ self add: (FmxSQLTriggerStoredProcedure named: aName)
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newTypeReference [
+FmxSQLTEntityCreator >> newUnionClause [
 
 	<generated>
-	^ self add: FmxSQLTypeReference new
+	^ self add: FmxSQLUnionClause new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newUniqueConstraint [
+FmxSQLTEntityCreator >> newUpdateQuery [
 
 	<generated>
-	^ self add: FmxSQLUniqueConstraint new
+	^ self add: FmxSQLUpdateQuery new
 ]
 
 { #category : 'entity creation' }
-FmxSQLTEntityCreator >> newUniqueConstraintNamed: aName [
+FmxSQLTEntityCreator >> newUsingClause [
 
 	<generated>
-	^ self add: (FmxSQLUniqueConstraint named: aName)
+	^ self add: FmxSQLUsingClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newValuesClause [
+
+	<generated>
+	^ self add: FmxSQLValuesClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newValuesQuery [
+
+	<generated>
+	^ self add: FmxSQLValuesQuery new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newView [
+
+	<generated>
+	^ self add: FmxSQLView new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newViewNamed: aName [
+
+	<generated>
+	^ self add: (FmxSQLView named: aName)
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newViewReference [
+
+	<generated>
+	^ self add: FmxSQLViewReference new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newWhereClause [
+
+	<generated>
+	^ self add: FmxSQLWhereClause new
+]
+
+{ #category : 'entity creation' }
+FmxSQLTEntityCreator >> newWithClause [
+
+	<generated>
+	^ self add: FmxSQLWithClause new
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : 'FmxSQLModel',
 	#superclass : 'MooseModel',
-	#traits : 'FmxSQLTEntityCreator',
-	#classTraits : 'FmxSQLTEntityCreator classTrait',
+	#traits : 'FmxSQLStructTEntityCreator + FmxSQLTEntityCreator',
+	#classTraits : 'FmxSQLStructTEntityCreator classTrait + FmxSQLTEntityCreator classTrait',
 	#category : 'FamixNGSQL-Model',
 	#package : 'FamixNGSQL',
 	#tag : 'Model'
@@ -11,7 +11,7 @@ Class {
 { #category : 'accessing' }
 FmxSQLModel class >> allSubmetamodelsPackagesNames [
 	<generated>
-	^ #(#'Moose-Query' #'Famix-Traits')
+	^ #(#'Moose-Query' 'FamixNGSQLStruct' #'Famix-Traits')
 ]
 
 { #category : 'meta' }

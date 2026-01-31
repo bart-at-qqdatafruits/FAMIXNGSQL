@@ -24,7 +24,8 @@ Class {
 		'tWithColumnReference',
 		'tWithTableReference',
 		'namespaceReference',
-		'tWithNamespaceReference'
+		'tWithNamespaceReference',
+		'tWithQualifiedReference'
 	],
 	#category : 'FAMIXNGSQLMetamodelGenerator',
 	#package : 'FAMIXNGSQLMetamodelGenerator'
@@ -44,12 +45,12 @@ FmxSQLStructuralMetamodelGenerator class >> generate [
 
 { #category : 'accessing' }
 FmxSQLStructuralMetamodelGenerator class >> packageName [
-	^ 'FamixNGSQL'
+	^ 'FamixNGSQLStruct'
 ]
 
 { #category : 'accessing' }
 FmxSQLStructuralMetamodelGenerator class >> prefix [
-	^ 'FmxSQL'
+	^ 'FmxSQLStruct'
 ]
 
 { #category : 'comments - SQL' }
@@ -242,7 +243,11 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralReferencesHierarchy [
 	tableReference --|> reference.
 	columnReference --|> reference.
 	typeReference --|> reference.
-	namespaceReference --|> reference
+	namespaceReference --|> reference.
+	
+	tableReference --|> tWithQualifiedReference.
+	columnReference --|> tWithQualifiedReference.
+	namespaceReference --|> tWithQualifiedReference.
 ]
 
 { #category : 'definition - structural' }
@@ -258,7 +263,8 @@ FmxSQLStructuralMetamodelGenerator >> defineStructuralTraits [
 	tQueryContainer withTesting.
 	tWithColumnReference := builder newTraitNamed: #TWithColumnReference.
 	tWithTableReference := builder newTraitNamed: #TWithTableReference.
-	tWithNamespaceReference := builder newTraitNamed: #TWithNamespaceReference
+	tWithNamespaceReference := builder newTraitNamed: #TWithNamespaceReference.
+	tWithQualifiedReference := builder newTraitNamed: #TWithQualifiedReference.
 ]
 
 { #category : 'definition - structural' }

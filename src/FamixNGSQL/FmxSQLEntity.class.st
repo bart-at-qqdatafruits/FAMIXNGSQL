@@ -31,21 +31,28 @@ FmxSQLEntity class >> metamodel [
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isCheckConstraint [
+FmxSQLEntity >> isAccess [
 
 	<generated>
 	^ false
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isColumn [
+FmxSQLEntity >> isAlias [
 
 	<generated>
 	^ false
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isColumnReference [
+FmxSQLEntity >> isAliasAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isAssociation [
 
 	<generated>
 	^ false
@@ -59,14 +66,84 @@ FmxSQLEntity >> isComment [
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isConstraint [
+FmxSQLEntity >> isCursor [
 
 	<generated>
 	^ false
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isForeignKeyConstraint [
+FmxSQLEntity >> isEntitySourceAnchor [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isExceptClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isFromClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isGroupByClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isHavingClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isIntersectClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isJoinClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isLimitClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isLocalVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isLocalVariableAccess [
 
 	<generated>
 	^ false
@@ -80,21 +157,28 @@ FmxSQLEntity >> isNamedEntity [
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isNamespace [
+FmxSQLEntity >> isOnConflictClause [
 
 	<generated>
 	^ false
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isNotNullConstraint [
+FmxSQLEntity >> isOrderByClause [
 
 	<generated>
 	^ false
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isPrimaryKeyConstraint [
+FmxSQLEntity >> isParameterAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isQueryContainer [
 
 	<generated>
 	^ false
@@ -108,7 +192,91 @@ FmxSQLEntity >> isQueryable [
 ]
 
 { #category : 'testing' }
-FmxSQLEntity >> isUniqueConstraint [
+FmxSQLEntity >> isReturningClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isSelectClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isSetClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isStoredProcedureCall [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isTriggerStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isUnionClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isUsingClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isValuesClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isView [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isWhereClause [
+
+	<generated>
+	^ false
+]
+
+{ #category : 'testing' }
+FmxSQLEntity >> isWithClause [
 
 	<generated>
 	^ false
